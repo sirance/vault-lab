@@ -97,4 +97,4 @@ jobs:
       env:
         VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
         TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve -var "vault_url=${{ secrets.VAULT_ADDR }}" -var "vault_token=${{ env.VAULT_TOKEN }}"
