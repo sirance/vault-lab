@@ -14,25 +14,25 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    # Shout out to Benjamin Pannell at Sierra Softworks for this
-    # https://sierrasoftworks.com/2021/12/20/vault-github-actions/#policies
-    # - name: Troubleshooting
-    #   run: |
-    #       curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | \
-    #       jq "{ jwt: .value, role: \"$VAULT_ROLE\" }" > ./token.json
+    Shout out to Benjamin Pannell at Sierra Softworks for this
+    https://sierrasoftworks.com/2021/12/20/vault-github-actions/#policies
+    - name: Troubleshooting
+      run: |
+          curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | \
+          jq "{ jwt: .value, role: \"$VAULT_ROLE\" }" > ./token.json
             
-    #       echo 'GitHub Actions Token Claims'
-    #       cat ./token.json | jq -r '.jwt | split(".") | .[1] | @base64d' | jq
+          echo 'GitHub Actions Token Claims'
+          cat ./token.json | jq -r '.jwt | split(".") | .[1] | @base64d' | jq
 
-    #       echo 'Vault Login Response'
-    #       curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace: admin" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
+          echo 'Vault Login Response'
+          curl -sSLf -X POST -H "Content-Type: application/json" -H "X-Vault-Namespace: admin" --data @token.json $VAULT_URL/v1/auth/$VAULT_AUTH_PATH/login
 
-    #       # Remove the token file when we're done (if we don't fail)
-    #       rm ./token.json
-    #   env:
-    #     VAULT_URL: ${{ secrets.VAULT_ADDR }}
-    #     VAULT_AUTH_PATH: jwt
-    #     VAULT_ROLE: ${{ secrets.VAULT_ROLE }}
+          # Remove the token file when we're done (if we don't fail)
+          rm ./token.json
+      env:
+        VAULT_URL: ${{ secrets.VAULT_ADDR }}
+        VAULT_AUTH_PATH: jwt
+        VAULT_ROLE: ${{ secrets.VAULT_ROLE }}
 
     - name: Retrieve Secrets
       id: secretdata
