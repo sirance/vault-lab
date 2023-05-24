@@ -27,3 +27,8 @@ variable "vault_url" {
   default     = ""
   description = "URL for vault"
 }
+
+variable "vault_token" {
+  default     = ""
+  description = "token for vault"
+}
