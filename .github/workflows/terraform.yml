@@ -25,6 +25,7 @@ jobs:
     - name: Retrieve secret from Vault
       uses: hashicorp/vault-action@v2.4.0
       with:
+          tlsSkipVerify: true
           exportToken: true
           method: jwt
           url: ${{ secrets.VAULT_ADDR }}
