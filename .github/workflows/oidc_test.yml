@@ -14,8 +14,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    Shout out to Benjamin Pannell at Sierra Softworks for this
-    https://sierrasoftworks.com/2021/12/20/vault-github-actions/#policies
+#     Shout out to Benjamin Pannell at Sierra Softworks for this
+#     https://sierrasoftworks.com/2021/12/20/vault-github-actions/#policies
     - name: Troubleshooting
       run: |
           curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | \
