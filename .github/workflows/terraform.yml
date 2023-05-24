@@ -54,7 +54,7 @@ jobs:
     - name: Terraform Plan
       id: plan
       env:
-        VAULT_URL: ${{ secrets.VAULT_ADDR }}
+        VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
         TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
       if: github.event_name == 'pull_request'
       run: terraform plan -no-color
@@ -93,6 +93,6 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       env:
-        VAULT_URL: ${{ secrets.VAULT_ADDR }}
+        VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
         TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
       run: terraform apply -auto-approve
