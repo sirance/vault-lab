@@ -22,3 +22,8 @@ variable "province" {
   default     = ""
   description = "Provine for PKI"
 }
+
+variable "vault_url" {
+  default     = ""
+  description = "URL for vault"
+}
