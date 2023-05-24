@@ -2,6 +2,10 @@ name: 'Terraform'
 
 on: [push, pull_request]
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   TF_LOG: INFO
 
@@ -18,6 +22,14 @@ jobs:
         working-directory: ./
 
     steps:
+    - name: Retrieve secret from Vault
+      uses: hashicorp/vault-action@v2.4.0
+      with:
+          exportToken: true
+          method: jwt
+          url: ${{ secrets.VAULT_ADDR }}
+          role: ${{ secrets.VAULT_ROLE }}
+          secrets: ${{ secrets.VAULT_SECRET_PATH }} ${{ secrets.VAULT_SECRET_KEY }}
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
