@@ -10,7 +10,7 @@ permissions:
 
 env:
   TF_LOG: INFO
-  VAULT_URL: ${{ vars.VAULT_URL }}
+  VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
   TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
 
 jobs:
@@ -55,8 +55,9 @@ jobs:
     - name: Terraform Plan
       id: plan
       if: github.event_name == 'pull_request'
-      run: |
-        VAULT_ADDR=${{ vars.VAULT_URL }} VAULT_TOKEN=${{ env.VAULT_TOKEN }} terraform plan -no-color 
+      env:
+        VAULT_TOKEN: ${{ env.VAULT_TOKEN }}
+      run: terraform plan -no-color 
 # export VAULT_ADDR=${{ env.VAULT_ADDR }}
 # -var "vault_url=${{ secrets.VAULT_ADDR }}" -var "vault_token=${{ env.VAULT_TOKEN }}"
     
