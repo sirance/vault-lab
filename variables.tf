@@ -23,12 +23,12 @@ variable "province" {
   description = "Provine for PKI"
 }
 
-variable "vault_url" {
-  default     = ""
-  description = "URL for vault"
-}
+# variable "vault_url" {
+#   default     = ""
+#   description = "URL for vault"
+# }
 
-variable "vault_token" {
-  default     = ""
-  description = "token for vault"
-}
+# variable "vault_token" {
+#   default     = ""
+#   description = "token for vault"
+# }
