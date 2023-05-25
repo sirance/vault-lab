@@ -27,7 +27,7 @@ jobs:
 
     steps:
     - name: Retrieve secret from Vault
-      uses: hashicorp/vault-action@v2.4.0
+      uses: hashicorp/vault-action@v2.5.0
       with:
           tlsSkipVerify: true
           exportToken: true
