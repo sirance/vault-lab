@@ -56,9 +56,9 @@ jobs:
       id: plan
       if: github.event_name == 'pull_request'
       run: |
-      export VAULT_TOKEN=${{ env.VAULT_TOKEN }}
-      env
-      terraform plan -no-color 
+        export VAULT_TOKEN=${{ env.VAULT_TOKEN }}
+        env
+        terraform plan -no-color 
 # export VAULT_ADDR=${{ env.VAULT_ADDR }}
 # -var "vault_url=${{ secrets.VAULT_ADDR }}" -var "vault_token=${{ env.VAULT_TOKEN }}"
     
