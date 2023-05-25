@@ -15,6 +15,6 @@ jobs:
         
     steps:
     - name: Output env var
-      env:
-        TEST: ${{ env.TEST_VAR }}
-      run: echo "Output is ${TEST}"
+      # env:
+      #   TEST: ${{ env.TEST_VAR }}
+      run: export TEST_VAR; echo "Output is ${TEST_VAR}"
