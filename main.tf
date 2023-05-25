@@ -5,7 +5,13 @@ terraform {
       version = "3.15.2"
     }
   }
+  cloud {
+    organization = "sirance-test"
 
+    workspaces {
+      name = "vault-lab"
+    }
+  }
 }
 
 locals {
