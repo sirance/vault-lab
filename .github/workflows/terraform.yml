@@ -10,7 +10,7 @@ permissions:
 
 env:
   TF_LOG: INFO
-  # VAULT_ADDR: ${{ var.VAULT_ADDR }}
+  VAULT_URL: ${{ vars.VAULT_URL }}
   TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
 
 jobs:
