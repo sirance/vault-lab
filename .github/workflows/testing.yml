@@ -1,0 +1,18 @@
+name: 'testing'
+on: [push]
+
+env:
+  TEST_VAR: "Testing"
+  
+jobs:
+  test-job:
+    name: 'Test Job'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+        
+    steps:
+    - name: Output env var
+      run: echo "Output is: ${TEST_VAR}"
