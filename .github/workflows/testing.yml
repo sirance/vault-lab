@@ -15,4 +15,4 @@ jobs:
         
     steps:
     - name: Output env var
-      run: echo "Output is: ${TEST_VAR}"
+      run: echo "Output is ${TEST_VAR}"
