@@ -14,9 +14,10 @@ env:
   TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
 
 jobs:
+
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     # Set the working directory to main for the config files
