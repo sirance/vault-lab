@@ -10,13 +10,14 @@ permissions:
 
 env:
   TF_LOG: INFO
-  # VAULT_ADDR: ${{ var.VAULT_ADDR }}
+  VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
   TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN }}
 
 jobs:
+
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     # Set the working directory to main for the config files
@@ -27,7 +28,7 @@ jobs:
 
     steps:
     - name: Retrieve secret from Vault
-      uses: hashicorp/vault-action@v2.4.0
+      uses: hashicorp/vault-action@v2.5.0
       with:
           tlsSkipVerify: true
           exportToken: true
@@ -55,11 +56,9 @@ jobs:
     - name: Terraform Plan
       id: plan
       if: github.event_name == 'pull_request'
-      run: |
-        export VAULT_ADDR=${{ VAULT_ADDR }}
-        export VAULT_TOKEN=${{ env.VAULT_TOKEN }}
-        env
-        terraform plan -no-color 
+      env:
+        VAULT_TOKEN: ${{ env.VAULT_TOKEN }}
+      run: terraform plan -no-color 
 # export VAULT_ADDR=${{ env.VAULT_ADDR }}
 # -var "vault_url=${{ secrets.VAULT_ADDR }}" -var "vault_token=${{ env.VAULT_TOKEN }}"
     
